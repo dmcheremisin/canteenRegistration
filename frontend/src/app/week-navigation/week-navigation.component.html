@@ -1,0 +1,19 @@
+<div>
+  <p></p>
+</div>
+<div class="container">
+  <div class="row" *ngIf="weeks">
+    <ng-container *ngFor="let week of weeks">
+      <div
+        [className]="week.id == selectedWeekId ? 'bg-warning col-md-2 border stretched-link pointer' : 'bg-white col-md-2 border stretched-link pointer'"
+        (click)="changeSelectedWeek(week.id)"
+      >
+        <p align="center">{{week.month}}</p>
+        <p align="center">{{week.start | date:'dd.MM'}} - {{week.end | date:'dd.MM'}}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div>
+  <p></p>
+</div>

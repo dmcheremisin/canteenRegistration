@@ -1,0 +1,9 @@
+<div class="container">
+  <app-week-navigation></app-week-navigation>
+  <div class="row" *ngIf="week">
+    <div class="col-md-4" *ngFor="let day of week.days">
+      <app-day [day]="day"></app-day>
+    </div>
+  </div>
+</div>
+

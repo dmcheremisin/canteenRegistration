@@ -1,0 +1,43 @@
+<p><strong>{{day.name}}</strong> {{day.date | date:'dd.MM'}}</p>
+<div id="accordion" class="bg-white">
+  <div class="card" *ngFor="let slot of day.slots">
+
+    <ng-container *ngIf="checkDate(day.date)">
+      <div class="card-header bg-white" id="headingOne" style="cursor: pointer" >
+        <div class="mb-0">
+          <div data-toggle="collapse" [attr.data-target]="'#collapse' + day.name + slot.id"
+               aria-expanded="true" aria-controls="collapseOne">
+            <div class="row">
+              <div class="col" style="text-align:left">{{slot.slotTemplate.start}} - {{slot.slotTemplate.end}}</div>
+              <div class="col" style="text-align:right">{{slot.reserved}}/{{slot.slotTemplate.capacity}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div [attr.id]="'collapse' + day.name + slot.id" class="collapse bg-white" aria-labelledby="headingOne"
+           data-parent="#accordion">
+        <div class="card-body">
+          <app-slot (onReservation)="reloadDay($event);" [slot]="slot"></app-slot>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!checkDate(day.date)">
+      <div class="card-header bg-light" >
+        <div class="mb-0">
+          <div>
+            <div class="row">
+              <div class="col" style="text-align:left">{{slot.slotTemplate.start}} - {{slot.slotTemplate.end}}</div>
+              <div class="col" style="text-align:right">{{slot.reserved}}/{{slot.slotTemplate.capacity}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+<div>
+  <p></p>
+</div>

@@ -1,0 +1,40 @@
+<div>
+  <form (ngSubmit)="submit()" class="form-inline">
+    <div class="row">
+      <div class="col" style="text-align:left">
+        <fieldset class="form-group">
+          <label>
+            <span>Menu: </span>&nbsp;
+            <select class="form-control" id="menuSelector" [(ngModel)]="menuId" name="menuId">
+              <option value="1">Menu 1</option>
+              <option value="2">Menu 2</option>
+            </select>
+          </label>
+        </fieldset>
+      </div>
+      <div class="col" style="text-align:right">
+        <button [className]="slot.reserved < slot.slotTemplate.capacity ? 'btn btn-warning' : 'disabled btn btn-warning'"
+                type="submit">Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<div>
+  <p></p>
+</div>
+<div class="panel panel-primary" id="result_panel">
+  <div class="panel-heading">
+    <p class="panel-title">Colleagues queue</p>
+  </div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let reservation of slot.reservations">
+        <div class="row">
+          <div class="col" style="text-align:left">{{reservation.username}}</div>
+          <div class="col-sm" style="text-align:right">{{reservation.menu}}</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
